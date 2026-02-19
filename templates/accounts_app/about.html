@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-12 text-center">
+        <h1 class="text-4xl font-bold mb-4 text-gray-900">About Me</h1>
+        {% if profile.resume %}
+        <a href="{{ profile.resume.url }}" target="_blank"
+            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+            </svg>
+            Download Resume
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Bio</h2>
+        <p class="text-lg text-gray-700 leading-relaxed">
+            {% if profile and profile.bio %}
+            {{ profile.bio|linebreaks }}
+            {% else %}
+            Hello! I'm a aspiring cyber security analyst.Dedicated to securing digital infrastructures and analyzing vulnerabilities.
+        Passionate about Network Security
+            {% endif %}
+        </p>
+
+        {% if skills %}
+        <h3 class="text-xl font-bold mt-8 mb-4">Skills</h3>
+        <div class="flex flex-wrap gap-2">
+            {% for skill in skills %}
+            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">{{ skill.name }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% if education %}
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Education</h2>
+        <div class="space-y-6">
+            {% for edu in education %}
+            <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                <h3 class="text-xl font-semibold text-gray-900">{{ edu.institution }}</h3>
+                <p class="text-blue-600 font-medium">{{ edu.degree }}</p>
+                <p class="text-sm text-gray-500 mb-2">
+                    {{ edu.start_date|date:"M Y" }} -
+                    {% if edu.end_date %}{{ edu.end_date|date:"M Y" }}{% else %}Present{% endif %}
+                </p>
+                <p class="text-gray-700">{{ edu.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if experience %}
+    <div>
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Experience</h2>
+        <div class="space-y-6">
+            {% for exp in experience %}
+            <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                <h3 class="text-xl font-semibold text-gray-900">{{ exp.company }}</h3>
+                <p class="text-green-600 font-medium">{{ exp.role }}</p>
+                <p class="text-sm text-gray-500 mb-2">
+                    {{ exp.start_date|date:"M Y" }} -
+                    {% if exp.end_date %}{{ exp.end_date|date:"M Y" }}{% else %}Present{% endif %}
+                </p>
+                <p class="text-gray-700">{{ exp.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

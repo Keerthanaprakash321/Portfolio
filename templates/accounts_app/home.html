@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-3xl mx-4 shadow-2xl">
+    <h1 class="text-5xl font-bold mb-4 tracking-tight">{% if profile %}{{ profile.user.first_name }} {{
+        profile.user.last_name }}{% else %}Keerthana Prakash{% endif %}</h1>
+    <p class="text-2xl text-blue-400 mb-6 font-mono">&lt; {% if profile and profile.short_intro %}{{ profile.short_intro
+        }}{% else %}Aspiring Cyber Security Analyst{% endif %} /&gt;</p>
+    <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+        {% if profile and profile.bio %}
+        {{ profile.bio|truncatewords:30 }}
+        {% else %}
+        Dedicated to securing digital infrastructures and analyzing vulnerabilities.
+        Passionate about Network Security, Penetration Testing, and Incident Response.
+        {% endif %}
+    </p>
+    <div class="space-x-4">
+        <a href="{% url 'project_list' %}"
+            class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-500 transition shadow-lg font-semibold">View
+            My Work</a>
+        <a href="{% url 'contact' %}"
+            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-semibold">Get
+            In Touch</a>
+    </div>
+</div>
+
+<!-- Featured Skills -->
+<div class="mt-16 container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Technical Expertise</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for skill in skills %}
+        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
+                <span class="mr-2 text-2xl">⚡</span> {{ skill.name }}
+            </h3>
+        </div>
+        {% empty %}
+        <!-- Fallback if no skills are added yet -->
+        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
+                <span class="mr-2 text-2xl">🛡️</span> Network Security
+            </h3>
+        </div>
+        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-green-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
+                <span class="mr-2 text-2xl">🕵️</span> Vulnerability Assessment
+            </h3>
+        </div>
+        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-purple-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
+                <span class="mr-2 text-2xl">💻</span> Security Operations
+            </h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
