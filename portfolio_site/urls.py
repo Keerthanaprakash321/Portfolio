@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('accounts_app.urls')),
     path('projects/', include('projects_app.urls')),
     path('contact/', include('contact_app.urls')),
+    path('certificates/', account_views.certificate_list, name='certificates'),
     path('', account_views.home, name='home'),
 ]
 

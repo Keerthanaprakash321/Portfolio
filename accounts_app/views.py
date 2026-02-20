@@ -59,7 +59,6 @@ def about(request):
     }
     return render(request, 'accounts_app/about.html', context)
 
-@login_required
 def dashboard(request):
     try:
         # Fetch the admin's profile (first one created)
@@ -148,3 +147,7 @@ def logout_view(request):
         messages.info(request, "Logged out successfully!")
         return redirect('home')
     return redirect('home')
+
+def certificate_list(request):
+    certificates = Certificate.objects.all()
+    return render(request, 'accounts_app/certificates.html', {'certificates': certificates})
