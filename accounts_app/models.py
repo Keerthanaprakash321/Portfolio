@@ -18,11 +18,18 @@ class Profile(models.Model):
         return f"{self.user.username}'s Profile"
 
 class Skill(models.Model):
+    CATEGORY_CHOICES = [
+        ('LANGUAGE', 'Language'),
+        ('TOOL', 'Tool/Platform'),
+        ('SOFT_SKILL', 'Soft Skill'),
+        ('OTHER', 'Other'),
+    ]
     name = models.CharField(max_length=100)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='OTHER')
     is_key_skill = models.BooleanField(default=False, help_text="Check if this is a key skill to show on the home page.")
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.get_category_display()})"
 
 class Education(models.Model):
     institution = models.CharField(max_length=200)
@@ -51,6 +58,21 @@ class Experience(models.Model):
 
     def __str__(self):
         return f"{self.role} at {self.company}"
+
+class Certificate(models.Model):
+    title = models.CharField(max_length=200)
+    issuer = models.CharField(max_length=200)
+    date_issued = models.DateField()
+    description = models.TextField(blank=True)
+    credential_url = models.URLField(blank=True, null=True, help_text="Link to the credential.")
+    image = models.ImageField(upload_to='certificates/', blank=True, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='certificates')
+
+    class Meta:
+        ordering = ['-date_issued']
+
+    def __str__(self):
+        return f"{self.title} by {self.issuer}"
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

@@ -1,45 +1,92 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth scroll-pt-20">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | {% block title %}Home{% endblock %}</title>
     {% tailwind_css %}
+    <style>
+        :root {
+            /* Dark Mode: Pure Black Background, Bright Green Text */
+            --bg-primary: #000000;
+            --bg-secondary: #003300;
+            --text-primary: #00AA00;
+            --text-secondary: #00AA00;
+            --text-accent: #00FF00;
+            --border-color: #003300;
+        }
+
+        /* Force Pure Black Background */
+        html,
+        body {
+            background-color: #000000 !important;
+            scroll-behavior: smooth !important;
+        }
+
+        nav {
+            pointer-events: auto !important;
+            z-index: 1000 !important;
+        }
+
+        nav a {
+            pointer-events: auto !important;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+<body
+    class="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans leading-normal tracking-normal flex flex-col min-h-screen transition-colors duration-300">
 
     <!-- Navigation -->
-    <nav class="bg-white shadow">
+    <nav
+        class="bg-[var(--bg-primary)] shadow fixed w-full z-50 top-0 border-b border-[var(--border-color)] transition-colors duration-300">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a class="text-xl font-bold text-gray-800 hover:text-gray-700" href="/">Keerthana Prakash</a>
+            <a class="text-xl font-bold text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                href="/">Portfolio</a>
             <div class="flex items-center space-x-4">
-                <a href="{% url 'home' %}" class="text-gray-800 hover:text-blue-500">Home</a>
-                <a href="{% url 'about' %}" class="text-gray-800 hover:text-blue-500">About</a>
-                <a href="{% url 'project_list' %}" class="text-gray-800 hover:text-blue-500">Projects</a>
-                <a href="{% url 'contact' %}" class="text-gray-800 hover:text-blue-500">Contact</a>
+
+                <a href="{% url 'home' %}#home"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Home</a>
+                <a href="{% url 'home' %}#about"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">About</a>
+                <a href="{% url 'home' %}#projects"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Projects</a>
+                <a href="{% url 'contact' %}"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Contact</a>
+
+                {% if profile.resume %}
+                <a href="{{ profile.resume.url }}" download
+                    class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-4 py-1 rounded border border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-black transition-all duration-300 font-bold ml-2">
+                    Resume
+                </a>
+                {% endif %}
+
                 {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="text-blue-600 hover:text-blue-800">Dashboard</a>
-                <form action="{% url 'logout' %}" method="post" class="inline">
+                {% if user.is_staff %}
+
+                <a href="{% url 'dashboard' %}"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Dashboard</a>
+                {% endif %}
+                <form action="{% url 'logout' %}" method="post" class="inline ml-2">
                     {% csrf_token %}
-                    <button type="submit" class="text-red-500 hover:text-red-700">Logout</button>
+                    <button type="submit" class="text-red-500 hover:text-red-700 transition-colors">Logout</button>
                 </form>
                 {% else %}
-                <a href="{% url 'login' %}" class="text-gray-800 hover:text-blue-500">Login</a>
+                <a href="{% url 'login' %}"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Login</a>
                 {% endif %}
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 flex-grow">
+    <main class="{% block main_class %}container mx-auto px-6 py-8 flex-grow mt-32 relative z-0{% endblock %}">
         {% if messages %}
         <div class="mb-6">
             {% for message in messages %}
-            <div class="p-4 mb-4 text-sm text-white rounded-lg {% if message.tags == 'success' %}bg-green-500{% elif message.tags == 'error' %}bg-red-500{% else %}bg-blue-500{% endif %}"
-                role="alert">
+            <div class="p-4 mb-4 text-sm rounded-lg border shadow-sm bg-black text-white border-white" role="alert">
                 <span class="font-medium">{{ message }}</span>
             </div>
             {% endfor %}
@@ -51,13 +98,19 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 mt-auto">
+    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] mt-auto transition-colors duration-300">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <p class="text-gray-600 text-sm">© {% now "Y" %} MyPortfolio. All rights reserved.</p>
+                <p class="text-[var(--text-primary)] text-sm">© {% now "Y" %} MyPortfolio. All rights reserved.</p>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-500 hover:text-gray-700">GitHub</a>
-                    <a href="#" class="text-gray-500 hover:text-gray-700">LinkedIn</a>
+                    <a href="https://github.com/Keerthanaprakash321"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                        target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/KeerthanaPrakashKP"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                        target="_blank">LinkedIn</a>
+                    <a href="mailto:keerthana76666@gmail.com"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Email</a>
                 </div>
             </div>
         </div>

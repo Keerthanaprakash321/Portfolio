@@ -14,7 +14,7 @@
             <label class="block text-gray-700 font-bold mb-2">{{ field.label }}</label>
             {{ field }}
             {% if field.help_text %}
-            <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+            <p class="text-xs text-black mt-1 font-medium">{{ field.help_text }}</p>
             {% endif %}
             {% for error in field.errors %}
             <p class="text-red-500 text-xs mt-1">{{ error }}</p>

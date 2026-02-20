@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+
+print(f"SETTINGS_BOOTSTRAP_TRACE: {__file__}")
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -88,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'accounts_app.context_processors.profile_context',
             ],
         },
     },

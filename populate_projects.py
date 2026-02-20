@@ -8,52 +8,49 @@ django.setup()
 from projects_app.models import Project
 
 def populate_projects():
+    # Clear existing projects to showcase only user's real projects
+    print("Clearing existing projects...")
+    Project.objects.all().delete()
+
     projects = [
         {
-            "title": "Network Vulnerability Scanner",
-            "description": "Developed a Python-based network scanner to identify open ports and potential vulnerabilities in local networks. The tool uses `scapy` and `socket` libraries to map network topology and flag insecure services.",
-            "tech_stack": "Python Scapy TCP/IP Networking",
-            "github_link": "https://github.com/keerthana/network-scanner",
+            "title": "Coffee and Bakery Website",
+            "description": "Designed and developed a responsive Coffee and bakery Website to showcase items, pricing, and appointment options. Gained strong technical experience in frontend development such as HTML, CSS, JavaScript and Dynamic UI designs. Implemented interactive features, mobile-friendly design, UI/UX with modern layouts, improving user browsing experience.",
+            "tech_stack": "HTML CSS JavaScript Dynamic_UI",
+            # User provided credentials but missed the specific link for this project.
+            # Using a placeholder or the main profile for now.
+            "github_link": "https://github.com/Keerthanaprakash321/Cofee-and-bakery-Website/tree/main", 
             "live_link": "",
         },
         {
-            "title": "Secure Chat Application",
-            "description": "Designed and implemented an end-to-end encrypted chat application using AES-256 encryption. Features include secure key exchange, message integrity verification, and ephemeral messaging.",
-            "tech_stack": "Python Cryptography PyCrypto Socket Programming",
-            "github_link": "https://github.com/keerthana/secure-chat",
+            "title": "Real time Parking slot Allocator",
+            "description": "Built a Real time parking slot allocator using CPP to manage vehicles of all types in an efficient and sustainable way. Implemented secure role-based login for vehicle owner to ensure controlled access. Gained knowledge about backend modules and database queries, improving data retrieval speed and overall system efficiency. Implemented interactive features and efficient parking slot for all kinds of vehicles.",
+            "tech_stack": "C++ Database Backend Security",
+            "github_link": "https://github.com/Keerthanaprakash321/Real-time-parking-slot-allocator/tree/main",
             "live_link": "",
         },
         {
-            "title": "Phishing Detection System",
-            "description": "Built a machine learning model to classify emails as phishing or legitimate based on header analysis and content features. Achieved 95% accuracy using Random Forest classifier.",
-            "tech_stack": "Python Scikit-Learn Pandas Machine Learning",
-            "github_link": "https://github.com/keerthana/phishing-detector",
+            "title": "Book Recommendation Website",
+            "description": "Designed and developed an interactive Book Recommendation Website that allows users to explore, search, and receive personalized book suggestions based on genres, ratings, and user preferences. Gained strong technical experience in frontend development such as HTML, CSS, JavaScript and Dynamic UI designs. Delivered a responsive and user-friendly platform that improves user engagement, provides accurate book recommendations, and enhances browsing experience across multiple devices.",
+            "tech_stack": "HTML CSS JavaScript Dynamic_UI",
+            "github_link": "https://github.com/Keerthanaprakash321/Book-Recommendation-Website",
             "live_link": "",
         },
-        {
-            "title": "Django Web Security Audit",
-            "description": "Conducted a comprehensive security audit of a Django e-commerce platform. Identified and patched SQL Injection points, XSS vulnerabilities, and misconfigured CSRF settings.",
-            "tech_stack": "Django OWASP_ZAP Burp_Suite Web_Security",
-            "github_link": "https://github.com/keerthana/security-audit",
-            "live_link": "",
-        }
     ]
 
+    print("Adding new projects...")
     for p_data in projects:
-        project, created = Project.objects.get_or_create(
+        project = Project.objects.create(
             title=p_data["title"],
-            defaults={
-                "description": p_data["description"],
-                "tech_stack": p_data["tech_stack"],
-                "github_link": p_data["github_link"],
-                "live_link": p_data["live_link"],
-                "created_date": date.today()
-            }
+            description=p_data["description"],
+            tech_stack=p_data["tech_stack"],
+            github_link=p_data["github_link"],
+            live_link=p_data["live_link"],
+            created_date=date.today()
         )
-        if created:
-            print(f"Created project: {project.title}")
-        else:
-            print(f"Project already exists: {project.title}")
+        print(f"Created project: {project.title}")
+
+    print("Done!")
 
 if __name__ == "__main__":
     populate_projects()

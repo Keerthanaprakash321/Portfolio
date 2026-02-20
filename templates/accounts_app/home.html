@@ -1,59 +1,203 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
-{% block content %}
-<div class="text-center py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-3xl mx-4 shadow-2xl">
-    <h1 class="text-5xl font-bold mb-4 tracking-tight">{% if profile %}{{ profile.user.first_name }} {{
-        profile.user.last_name }}{% else %}Keerthana Prakash{% endif %}</h1>
-    <p class="text-2xl text-blue-400 mb-6 font-mono">&lt; {% if profile and profile.short_intro %}{{ profile.short_intro
-        }}{% else %}Aspiring Cyber Security Analyst{% endif %} /&gt;</p>
-    <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-        {% if profile and profile.bio %}
-        {{ profile.bio|truncatewords:30 }}
-        {% else %}
-        Dedicated to securing digital infrastructures and analyzing vulnerabilities.
-        Passionate about Network Security, Penetration Testing, and Incident Response.
-        {% endif %}
-    </p>
-    <div class="space-x-4">
-        <a href="{% url 'project_list' %}"
-            class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-500 transition shadow-lg font-semibold">View
-            My Work</a>
-        <a href="{% url 'contact' %}"
-            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-semibold">Get
-            In Touch</a>
-    </div>
-</div>
+{% block main_class %}flex-grow{% endblock %}
 
-<!-- Featured Skills -->
-<div class="mt-16 container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Technical Expertise</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {% for skill in skills %}
-        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-600">
-            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
-                <span class="mr-2 text-2xl">⚡</span> {{ skill.name }}
-            </h3>
+{% block content %}
+<!-- Hero Section -->
+<section id="home"
+    class="h-screen flex text-[var(--text-primary)] relative transition-colors duration-300 overflow-hidden bg-black">
+
+    <!-- Dark Overlay for readability -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Text Content -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-24 z-10">
+        <p class="text-2xl text-[var(--text-primary)] mb-2 font-mono">Hi, I'm</p>
+
+        <h1 class="text-5xl md:text-7xl font-serif font-bold text-[var(--text-primary)] mb-4 tracking-tight">
+            Keerthana Prakash
+        </h1>
+
+        <h2 class="text-5xl md:text-7xl font-bold text-[var(--text-primary)] mb-8 leading-tight">
+            Aspiring Software<br>Developer
+        </h2>
+
+        <p class="text-lg md:text-xl text-[var(--text-primary)] opacity-80 max-w-2xl mb-10 leading-relaxed font-mono">
+            I focus on building scalable, efficient software solutions through hands-on projects in full-stack
+            development,
+            algorithm design, and system architecture, while continuously strengthening my foundation in data structures
+            and
+            problem-solving.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-6">
+            <!-- GitHub -->
+            <a href="https://github.com/Keerthanaprakash321" target="_blank"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/KeerthanaPrakashKP" target="_blank"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:keerthana76666@gmail.com"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+            </a>
         </div>
-        {% empty %}
-        <!-- Fallback if no skills are added yet -->
-        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-600">
-            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
-                <span class="mr-2 text-2xl">🛡️</span> Network Security
-            </h3>
-        </div>
-        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-green-600">
-            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
-                <span class="mr-2 text-2xl">🕵️</span> Vulnerability Assessment
-            </h3>
-        </div>
-        <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-purple-600">
-            <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
-                <span class="mr-2 text-2xl">💻</span> Security Operations
-            </h3>
-        </div>
-        {% endfor %}
     </div>
-</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-[var(--bg-primary)] transition-colors duration-300 relative z-10">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[var(--text-primary)]">About Me</h2>
+            <div class="w-24 h-1 bg-[var(--border-color)] mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-8 rounded-lg shadow-xl mb-12">
+            <div class="prose max-w-none text-lg text-[var(--text-primary)] leading-relaxed text-center mb-8 font-mono">
+                {% if profile and profile.bio %}{{ profile.bio|linebreaks }}{% else %}<p>Hello! I'm an aspiring software
+                    developer dedicated to building robust applications and solving complex problems. I have a strong
+                    foundation in Python and Django.</p>{% endif %}
+            </div>
+
+            {% if profile.resume %}
+            <div class="text-center">
+                <a href="{{ profile.resume.url }}" target="_blank"
+                    class="inline-flex items-center px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] font-semibold rounded-lg hover:bg-[var(--bg-primary)] hover:text-[var(--text-accent)] border border-[var(--text-primary)] transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Download Resume
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Skills -->
+        {% if skills %}
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold mb-8 text-center text-[var(--text-primary)]">My Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Languages -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Languages</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        {% for skill in skills %}{% if skill.category == 'LANGUAGE' %}<span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>{% endif %}{% endfor %}
+                    </div>
+                </div>
+
+                <!-- Tools/Platforms -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Tools/Platforms</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        {% for skill in skills %}{% if skill.category == 'TOOL' %}<span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>{% endif %}{% endfor %}
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Soft Skills</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        {% for skill in skills %}{% if skill.category == 'SOFT_SKILL' or not skill.category %}<span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>{% endif %}{% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects"
+    class="py-20 bg-[var(--bg-primary)] border-t border-[var(--border-color)] transition-colors duration-300">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[var(--text-primary)]">My Projects</h2>
+            <div class="w-24 h-1 bg-[var(--border-color)] mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+            <div
+                class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                    class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                {% else %}
+                <div
+                    class="w-full h-48 bg-[var(--bg-secondary)] flex items-center justify-center border-b border-[var(--text-primary)]">
+                    <span class="text-[var(--text-primary)] font-semibold">No Image</span>
+                </div>
+                {% endif %}
+
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[var(--text-primary)]">{{ project.title }}</h3>
+                    <p class="text-[var(--text-primary)] opacity-80 mb-4 line-clamp-3 font-mono">{{ project.description
+                        }}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {% for tech in project.tech_stack.split %}<span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>{% endfor %}
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-[var(--border-color)] pt-4">
+                        <a href="{% url 'project_detail' project.slug %}"
+                            class="text-[var(--text-primary)] hover:text-white font-medium text-sm transition-colors">Read
+                            Details</a>
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank"
+                            class="flex items-center text-sm text-[var(--text-primary)] hover:text-white transition-colors">
+                            <span class="mr-1">link</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-10">
+                <p class="text-[var(--text-primary)] text-lg opacity-60">No projects added yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

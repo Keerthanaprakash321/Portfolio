@@ -39,7 +39,7 @@ def contact_view(request):
                 # and the admins can check the DB.
 
             messages.success(request, 'Your message has been sent successfully!')
-            return redirect('contact')
+            return redirect('home')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:

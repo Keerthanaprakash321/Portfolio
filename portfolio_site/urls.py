@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts_app import views as account_views
 
 admin.site.site_header = "Portfolio Admin"
 admin.site.site_title = "Portfolio Admin Portal"
@@ -27,5 +28,11 @@ urlpatterns = [
     path('accounts/', include('accounts_app.urls')),
     path('projects/', include('projects_app.urls')),
     path('contact/', include('contact_app.urls')),
-    path('', include('accounts_app.dashboard_urls')), # Dashboard/Home routing
+    path('', account_views.home, name='home'),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,461 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth scroll-pt-20">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Home</title>
+    
+
+<link rel="stylesheet" type="text/css" href="/static/css/dist/styles.css?v=1771584144">
+
+    <style>
+        :root {
+            /* Dark Mode: Pure Black Background, Bright Green Text */
+            --bg-primary: #000000;
+            --bg-secondary: #003300;
+            --text-primary: #00AA00;
+            --text-secondary: #00AA00;
+            --text-accent: #00FF00;
+            --border-color: #003300;
+        }
+
+        /* Force Pure Black Background */
+        html,
+        body {
+            background-color: #000000 !important;
+            scroll-behavior: smooth !important;
+        }
+
+        nav {
+            pointer-events: auto !important;
+            z-index: 1000 !important;
+        }
+
+        nav a {
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans leading-normal tracking-normal flex flex-col min-h-screen transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav
+        class="bg-[var(--bg-primary)] shadow fixed w-full z-50 top-0 border-b border-[var(--border-color)] transition-colors duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a class="text-xl font-bold text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                href="/">Portfolio</a>
+            <div class="flex items-center space-x-4">
+
+                <a href="/#home"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Home</a>
+                <a href="/#about"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">About</a>
+                <a href="/#projects"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Projects</a>
+                <a href="/contact/"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Contact</a>
+
+                
+                <a href="/media/resumes/General_CV_3.pdf" download
+                    class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-4 py-1 rounded border border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-black transition-all duration-300 font-bold ml-2">
+                    Resume
+                </a>
+                
+
+                
+                <a href="/accounts/login/"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Login</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+
+        
+<!-- Hero Section -->
+<section id="home"
+    class="h-screen flex text-[var(--text-primary)] relative transition-colors duration-300 overflow-hidden bg-black">
+
+    <!-- Dark Overlay for readability -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Text Content -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-24 z-10">
+        <p class="text-2xl text-[var(--text-primary)] mb-2 font-mono">Hi, I'm</p>
+
+        <h1 class="text-5xl md:text-7xl font-serif font-bold text-[var(--text-primary)] mb-4 tracking-tight">
+            Keerthana Prakash
+        </h1>
+
+        <h2 class="text-5xl md:text-7xl font-bold text-[var(--text-primary)] mb-8 leading-tight">
+            Aspiring Software<br>Developer
+        </h2>
+
+        <p class="text-lg md:text-xl text-[var(--text-primary)] opacity-80 max-w-2xl mb-10 leading-relaxed font-mono">
+            I focus on building scalable, efficient software solutions through hands-on projects in full-stack
+            development,
+            algorithm design, and system architecture, while continuously strengthening my foundation in data structures
+            and
+            problem-solving.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-6">
+            <!-- GitHub -->
+            <a href="https://github.com/Keerthanaprakash321" target="_blank"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/KeerthanaPrakashKP" target="_blank"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:keerthana76666@gmail.com"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors transform hover:scale-110">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-[var(--bg-primary)] transition-colors duration-300 relative z-10">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[var(--text-primary)]">About Me</h2>
+            <div class="w-24 h-1 bg-[var(--border-color)] mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-8 rounded-lg shadow-xl mb-12">
+            <div class="prose max-w-none text-lg text-[var(--text-primary)] leading-relaxed text-center mb-8 font-mono">
+                <p>Dedicated Aspiring Software Developer with a passion for building robust applications and solving complex problems. Expert in Python, Django, and Full-Stack Development.</p>
+            </div>
+
+            
+            <div class="text-center">
+                <a href="/media/resumes/General_CV_3.pdf" target="_blank"
+                    class="inline-flex items-center px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] font-semibold rounded-lg hover:bg-[var(--bg-primary)] hover:text-[var(--text-accent)] border border-[var(--text-primary)] transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Download Resume
+                </a>
+            </div>
+            
+        </div>
+
+        <!-- Skills -->
+        
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold mb-8 text-center text-[var(--text-primary)]">My Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Languages -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Languages</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+
+                <!-- Tools/Platforms -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Tools/Platforms</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div
+                    class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg shadow-md border-t-4 border-t-[var(--text-primary)]">
+                    <h4 class="font-bold text-lg mb-4 text-[var(--text-primary)] text-center">Soft Skills</h4>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                        
+                        <span
+                            class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-3 py-1 rounded-full text-sm font-medium border border-[var(--text-primary)]">{{
+                            skill.name }}</span>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Education -->
+        
+
+        <!-- Experience -->
+        
+
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects"
+    class="py-20 bg-[var(--bg-primary)] border-t border-[var(--border-color)] transition-colors duration-300">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[var(--text-primary)]">My Projects</h2>
+            <div class="w-24 h-1 bg-[var(--border-color)] mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div
+                class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                
+                <div
+                    class="w-full h-48 bg-[var(--bg-secondary)] flex items-center justify-center border-b border-[var(--text-primary)]">
+                    <span class="text-[var(--text-primary)] font-semibold">No Image</span>
+                </div>
+                
+
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[var(--text-primary)]">Book Recommendation Website</h3>
+                    <p class="text-sm text-[var(--text-primary)] opacity-60 mb-4">Feb 2026
+                    </p>
+                    <p class="text-[var(--text-primary)] opacity-80 mb-6 line-clamp-3 font-mono">{{ project.description
+                        }}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-[var(--border-color)] pt-4">
+                        <a href="/projects/book-recommendation-website/"
+                            class="text-[var(--text-primary)] hover:text-white font-medium text-sm transition-colors">Read
+                            Details</a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div
+                class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                
+                <div
+                    class="w-full h-48 bg-[var(--bg-secondary)] flex items-center justify-center border-b border-[var(--text-primary)]">
+                    <span class="text-[var(--text-primary)] font-semibold">No Image</span>
+                </div>
+                
+
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[var(--text-primary)]">Real-time Parking Slot Allocator</h3>
+                    <p class="text-sm text-[var(--text-primary)] opacity-60 mb-4">Feb 2026
+                    </p>
+                    <p class="text-[var(--text-primary)] opacity-80 mb-6 line-clamp-3 font-mono">{{ project.description
+                        }}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-[var(--border-color)] pt-4">
+                        <a href="/projects/real-time-parking-slot-allocator/"
+                            class="text-[var(--text-primary)] hover:text-white font-medium text-sm transition-colors">Read
+                            Details</a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div
+                class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                
+                <div
+                    class="w-full h-48 bg-[var(--bg-secondary)] flex items-center justify-center border-b border-[var(--text-primary)]">
+                    <span class="text-[var(--text-primary)] font-semibold">No Image</span>
+                </div>
+                
+
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[var(--text-primary)]">Coffee and Bakery Website</h3>
+                    <p class="text-sm text-[var(--text-primary)] opacity-60 mb-4">Feb 2026
+                    </p>
+                    <p class="text-[var(--text-primary)] opacity-80 mb-6 line-clamp-3 font-mono">{{ project.description
+                        }}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                        <span
+                            class="text-xs bg-[var(--bg-secondary)] text-[var(--text-primary)] px-2 py-1 rounded font-medium border border-[var(--text-primary)]">{{
+                            tech }}</span>
+                        
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-[var(--border-color)] pt-4">
+                        <a href="/projects/coffee-and-bakery-website/"
+                            class="text-[var(--text-primary)] hover:text-white font-medium text-sm transition-colors">Read
+                            Details</a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] mt-auto transition-colors duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <p class="text-[var(--text-primary)] text-sm">© 2026 MyPortfolio. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="https://github.com/Keerthanaprakash321"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                        target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/KeerthanaPrakashKP"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                        target="_blank">LinkedIn</a>
+                    <a href="mailto:keerthana76666@gmail.com"
+                        class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
