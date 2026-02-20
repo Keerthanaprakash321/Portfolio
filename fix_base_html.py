@@ -67,8 +67,11 @@ with open(r'c:\Users\keert\Portfolio\templates\base.html', 'w', encoding='utf-8'
                     </label>
                 </form>
 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'dashboard' %}" class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Dashboard</a>
+                {% else %}
+                <a href="#" class="text-[var(--text-primary)] opacity-60 cursor-not-allowed transition-colors">Dashboard</a>
+                {% endif %}
                 <form action="{% url 'logout' %}" method="post" class="inline">
                     {% csrf_token %}
                     <button type="submit" class="text-red-500 hover:text-red-700 transition-colors">Logout</button>

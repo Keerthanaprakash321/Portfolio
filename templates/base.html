@@ -40,35 +40,36 @@
     class="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans leading-normal tracking-normal flex flex-col min-h-screen transition-colors duration-300">
 
     <!-- Navigation -->
-    <nav
-        class="bg-[var(--bg-primary)] shadow fixed w-full z-50 top-0 border-b border-[var(--border-color)] transition-colors duration-300">
+    <nav class="bg-[var(--bg-primary)] shadow fixed w-full z-50 top-0 border-b border-[var(--border-color)] transition-colors duration-300"
+        style="background-color: rgba(0,0,0,0.97) !important; backdrop-filter: blur(8px);">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a class="text-xl font-bold text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
-                href="/">Portfolio</a>
+            <a class="nav-brand relative text-xl font-bold text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors"
+                href="/">
+                <span id="nav-name" style="opacity:0; transform:translateY(-8px); display:inline-block;
+                           transition: opacity 0.7s ease, transform 0.7s ease; white-space:nowrap;">Keerthana</span>
+            </a>
             <div class="flex items-center space-x-4">
 
                 <a href="{% url 'home' %}#home"
                     class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Home</a>
                 <a href="{% url 'home' %}#about"
                     class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">About</a>
+                <a href="{% url 'home' %}#skills"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Skills</a>
                 <a href="{% url 'home' %}#projects"
                     class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Projects</a>
                 <a href="{% url 'contact' %}"
                     class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Contact</a>
 
-                {% if profile.resume %}
-                <a href="{{ profile.resume.url }}" download
-                    class="bg-[var(--bg-secondary)] text-[var(--text-primary)] px-4 py-1 rounded border border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-black transition-all duration-300 font-bold ml-2">
-                    Resume
-                </a>
+                <a href="{% url 'dashboard' %}#certificates"
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">Certificates</a>
+
+                {% if user.is_authenticated and user.is_staff %}
+                <a href="{% url 'dashboard' %}" class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Dashboard</a>
+                {% else %}
+                <a href="#" class="text-[var(--text-primary)] opacity-60 cursor-not-allowed ml-4" title="Admin only" aria-disabled="true">Dashboard</a>
                 {% endif %}
 
-                {% if user.is_authenticated %}
-                {% if user.is_staff %}
-
-                <a href="{% url 'dashboard' %}"
-                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Dashboard</a>
-                {% endif %}
                 <form action="{% url 'logout' %}" method="post" class="inline ml-2">
                     {% csrf_token %}
                     <button type="submit" class="text-red-500 hover:text-red-700 transition-colors">Logout</button>
@@ -117,6 +118,36 @@
     </footer>
 
     <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Navbar brand scroll behaviour -->
+    <script>
+        (function () {
+            var navName = document.getElementById('nav-name');
+            if (!navName) return;
+
+            var homeSection = document.getElementById('home');
+            if (!homeSection) {
+                // Not on home page — always show Keerthana
+                navName.style.opacity = '1';
+                navName.style.transform = 'translateY(0)';
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    // On hero — hide name
+                    navName.style.opacity = '0';
+                    navName.style.transform = 'translateY(-8px)';
+                } else {
+                    // Scrolled past hero — show Keerthana
+                    navName.style.opacity = '1';
+                    navName.style.transform = 'translateY(0)';
+                }
+            }, { threshold: 0.1 });
+
+            observer.observe(homeSection);
+        })();
+    </script>
 </body>
 
 </html>

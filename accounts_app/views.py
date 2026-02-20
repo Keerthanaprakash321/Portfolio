@@ -21,23 +21,23 @@ def home(request):
         profile = Profile.objects.first()
         skills = Skill.objects.all()
         projects = Project.objects.all()
-        print(f"DEBUG_COUNT: profile={profile}, skills={skills.count()}, projects={projects.count()}")
-        for s in skills:
-            print(f"DEBUG_SKILL: {s.name} ({s.category})")
-        for p in projects:
-            print(f"DEBUG_PROJECT: {p.title} - desc_len={len(p.description)}")
+        certificates = Certificate.objects.filter(profile=profile)
+        print(f"DEBUG_COUNT: profile={profile}, skills={skills.count()}, projects={projects.count()}, certs={certificates.count()}")
     except Exception as e:
         print(f"DEBUG_ERROR: {e}")
         profile = None
         skills = []
         projects = []
+        certificates = []
     
     context = {
         'profile': profile,
         'skills': skills,
         'projects': projects,
+        'certificates': certificates,
     }
     return render(request, 'accounts_app/home.html', context)
+
 
 def about(request):
     try:
@@ -60,15 +60,19 @@ def about(request):
     return render(request, 'accounts_app/about.html', context)
 
 @login_required
-@user_passes_test(lambda u: u.is_staff)
 def dashboard(request):
     try:
-        profile = request.user.profile
+        # Fetch the admin's profile (first one created)
+        profile = Profile.objects.first()
         certificates = Certificate.objects.filter(profile=profile)
     except Exception:
+        profile = None
         certificates = []
     
-    return render(request, 'accounts_app/dashboard.html', {'certificates': certificates})
+    return render(request, 'accounts_app/dashboard.html', {
+        'owner_profile': profile,
+        'certificates': certificates
+    })
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)

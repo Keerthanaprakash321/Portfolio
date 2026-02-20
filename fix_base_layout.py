@@ -92,8 +92,11 @@ with open(r'c:\Users\keert\Portfolio\templates\base_layout.html', 'w', encoding=
                     </span>
                 </form>
 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'dashboard' %}" class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Dashboard</a>
+                {% else %}
+                <a href="#" class="text-[var(--text-primary)] opacity-60 cursor-not-allowed ml-4" title="Admin only" aria-disabled="true">Dashboard</a>
+                {% endif %}
                 <form action="{% url 'logout' %}" method="post" class="inline ml-2">
                     {% csrf_token %}
                     <button type="submit" class="text-red-500 hover:text-red-700 transition-colors">Logout</button>
