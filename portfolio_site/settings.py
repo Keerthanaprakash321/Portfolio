@@ -33,6 +33,7 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOST_ENV = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOST_ENV.split(',')] if ALLOWED_HOST_ENV else []
+ALLOWED_HOSTS.append('.vercel.app')
 
 
 # Application definition
