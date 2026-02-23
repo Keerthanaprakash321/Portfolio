@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,7 +160,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
+
+# WhiteNoise storage configuration
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -170,7 +181,12 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+# NPM Path for Tailwind - Use local path on Windows, and default on Vercel (Linux)
+if os.name == 'nt':
+    NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+else:
+    # On Vercel or other Linux environments, npm is usually in the PATH
+    NPM_BIN_PATH = "npm"
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
