@@ -4,13 +4,10 @@ from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
+
 # Only staff should create/manage projects for a portfolio
 def is_staff(user):
     return user.is_staff
-
-def project_list(request):
-    projects = Project.objects.all()
-    return render(request, 'projects_app/project_list.html', {'projects': projects})
 
 def project_detail(request, slug):
     project = get_object_or_404(Project, slug=slug)
@@ -24,7 +21,7 @@ def create_project(request):
         if form.is_valid():
             project = form.save()
             messages.success(request, 'Project created successfully!')
-            return redirect('project_list')
+            return redirect('/#projects')
     else:
         form = ProjectForm()
     return render(request, 'projects_app/project_form.html', {'form': form, 'title': 'Add Project'})
@@ -50,5 +47,5 @@ def delete_project(request, slug):
     if request.method == 'POST':
         project.delete()
         messages.success(request, 'Project deleted successfully!')
-        return redirect('project_list')
+        return redirect('/#projects')
     return render(request, 'projects_app/project_confirm_delete.html', {'project': project})

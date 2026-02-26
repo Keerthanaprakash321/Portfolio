@@ -4,9 +4,8 @@
 
 {% block content %}
 <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
 
-    <div class="bg-[var(--bg-primary)] p-6 rounded-lg shadow-md mb-8 border border-[var(--border-color)]">
+    <div class="bg-[var(--bg-primary)] p-6 rounded-lg shadow-md mb-8 border border-[var(--border-color)] mt-16">
         <h2 class="text-2xl font-bold mb-4 text-[var(--text-primary)]">
             Welcome, {% if user.is_authenticated %}{{ user.username }}{% else %}Visitor{% endif %}!
         </h2>
@@ -18,10 +17,14 @@
             {% endif %}
         </p>
         {% if user.is_staff %}
-        <div class="mt-4">
+        <div class="mt-4 flex flex-wrap gap-4">
             <a href="{% url 'create_project' %}"
                 class="inline-block bg-[var(--bg-secondary)] text-[var(--text-primary)] px-4 py-2 rounded hover:bg-[var(--bg-primary)] border border-[var(--text-primary)] font-semibold transition-colors">
                 + Add New Project
+            </a>
+            <a href="{% url 'create_certificate' %}"
+                class="inline-block bg-[var(--bg-secondary)] text-[var(--text-primary)] px-4 py-2 rounded hover:bg-[var(--bg-primary)] border border-[var(--text-primary)] font-semibold transition-colors">
+                + Add New Certificate
             </a>
         </div>
         {% endif %}

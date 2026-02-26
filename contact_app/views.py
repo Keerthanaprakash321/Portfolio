@@ -23,10 +23,11 @@ def contact_view(request):
                     reply_to=[contact_message.email],
                 )
                 email.send(fail_silently=False)
-                # Confirmation to User
+
+                # Confirmation Email to User (Thank you message)
                 send_mail(
                     subject="Thank you for contacting me",
-                    message=f"Hi {contact_message.name},\n\nI have received your message regarding '{contact_message.subject}' and will get back to you shortly.\n\nBest regards,\nKeerthana",
+                    message=f"Hi {contact_message.name},\n\nThank you for reaching out! I have received your message and will get back to you as soon as possible.\n\nBest regards,\nKeerthana",
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[contact_message.email],
                     fail_silently=False,

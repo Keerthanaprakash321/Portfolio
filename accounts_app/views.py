@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from .models import Profile, Skill, Education, Experience, Certificate
-from .forms import SignUpForm, LoginForm, CertificateForm
+from .forms import LoginForm, CertificateForm
 
 from projects_app.models import Project
 
@@ -15,16 +15,11 @@ from pathlib import Path
 
 def home(request):
     try:
-        print(f"DEBUG_CWD: {os.getcwd()}")
-        print(f"DEBUG_BASE_DIR: {settings.BASE_DIR}")
-        print(f"DEBUG_TEMPLATE_DIR: {settings.BASE_DIR / 'templates'}")
         profile = Profile.objects.first()
         skills = Skill.objects.all()
         projects = Project.objects.all()
         certificates = Certificate.objects.filter(profile=profile)
-        print(f"DEBUG_COUNT: profile={profile}, skills={skills.count()}, projects={projects.count()}, certs={certificates.count()}")
     except Exception as e:
-        print(f"DEBUG_ERROR: {e}")
         profile = None
         skills = []
         projects = []
@@ -59,6 +54,7 @@ def about(request):
     }
     return render(request, 'accounts_app/about.html', context)
 
+@login_required
 def dashboard(request):
     try:
         # Fetch the admin's profile (first one created)
@@ -88,16 +84,7 @@ def create_certificate(request):
         form = CertificateForm()
     return render(request, 'accounts_app/certificate_form.html', {'form': form, 'title': 'Add Certificate'})
 
-def signup_view(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Account created successfully! Please log in.')
-            return redirect('login')
-    else:
-        form = SignUpForm()
-    return render(request, 'accounts_app/signup.html', {'form': form})
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -105,18 +92,6 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-
-            if user.email:
-                try:
-                    send_mail(
-                        subject="Welcome Back!",
-                        message=f"Hi {user.username},\n\nThank you for logging in to your portfolio account. We're glad to have you back!\n\nBest regards,\nKeerthana",
-                        from_email=settings.DEFAULT_FROM_EMAIL,
-                        recipient_list=[user.email],
-                        fail_silently=True,
-                    )
-                except Exception as e:
-                    print(f"Login email failed: {e}")
 
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))

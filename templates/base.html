@@ -124,13 +124,8 @@
                 </a>
 
                 {% if user.is_authenticated %}
-                {% if user.is_staff %}
                 <a href="{% url 'dashboard' %}"
                     class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors ml-4">Dashboard</a>
-                {% else %}
-                <a href="#" class="text-[var(--text-primary)] opacity-60 cursor-not-allowed ml-4" title="Admin only"
-                    aria-disabled="true">Dashboard</a>
-                {% endif %}
 
                 <form action="{% url 'logout' %}" method="post" class="inline ml-2">
                     {% csrf_token %}
@@ -147,7 +142,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="{% block main_class %}container mx-auto px-6 py-8 flex-grow mt-32 relative z-0{% endblock %}">
+    <main class="{% block main_class %}container mx-auto px-6 py-8 flex-grow pt-32 relative z-0{% endblock %}">
         {% if messages %}
         <div class="mb-6">
             {% for message in messages %}

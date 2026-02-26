@@ -24,29 +24,31 @@
         <div class="flex space-x-4">
             {% if project.github_link %}
             <a href="{{ project.github_link }}" target="_blank"
-                class="flex items-center px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700">
-                link
+                class="flex items-center px-4 py-2 bg-black border border-[var(--text-primary)] text-[var(--text-primary)] rounded hover:bg-[var(--text-primary)] hover:text-black transition font-bold">
+                Source Code
             </a>
             {% endif %}
 
             {% if project.live_link %}
             <a href="{{ project.live_link }}" target="_blank"
-                class="flex items-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                class="flex items-center px-4 py-2 bg-[var(--text-primary)] text-black rounded hover:shadow-[0_0_15px_#00FF00] transition font-bold">
                 Live Demo
             </a>
             {% endif %}
         </div>
 
         <div class="mt-8 pt-8 border-t border-[var(--border-color)] flex justify-between items-center">
-            <a href="{% url 'project_list' %}"
-                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors">&larr; Back to
-                Projects</a>
+            <a href="/#projects"
+                class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors underline">&larr;
+                Back to Projects</a>
             {% if user.is_staff %}
-            <div class="space-x-2">
+            <div class="space-x-4">
                 <a href="{% url 'update_project' project.slug %}"
-                    class="text-yellow-600 hover:text-yellow-800 font-semibold">Edit</a>
+                    class="text-[var(--text-primary)] hover:text-[var(--text-accent)] font-semibold border-b border-transparent hover:border-[var(--text-accent)] transition-all">Edit
+                    Page</a>
                 <a href="{% url 'delete_project' project.slug %}"
-                    class="text-red-600 hover:text-red-800 font-semibold ml-4">Delete</a>
+                    class="text-red-500 hover:text-red-400 font-semibold border-b border-transparent hover:border-red-400 transition-all">Remove
+                    Project</a>
             </div>
             {% endif %}
         </div>

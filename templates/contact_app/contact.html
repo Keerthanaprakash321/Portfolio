@@ -3,10 +3,9 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Get In Touch</h1>
-
-    <div class="bg-[var(--bg-primary)] p-8 rounded-lg shadow-md border border-[var(--border-color)]">
+<div class="max-w-2xl mx-auto pt-20 pb-12">
+    <div class="bg-[var(--bg-primary)] p-8 rounded-lg shadow-md border border-[var(--border-color)] mt-10">
+        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--text-primary)]">Get In Touch</h1>
         <form method="post">
             {% csrf_token %}
 
